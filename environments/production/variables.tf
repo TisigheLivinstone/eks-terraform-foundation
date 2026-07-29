@@ -40,7 +40,7 @@ variable "public_subnet_cidrs" {
 }
 variable "application_instance_types" {
   type    = list(string)
-  default = ["m5.large"]
+  default = ["t3.medium"]
 }
 variable "application_min_size" {
   type    = number
@@ -52,5 +52,5 @@ variable "application_max_size" {
 }
 variable "application_desired_size" {
   type    = number
-  default = 2
+  default = 1
 }

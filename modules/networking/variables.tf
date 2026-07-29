@@ -33,3 +33,15 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "single_nat_gateway" {
+  description = "Use a single NAT Gateway instead of one per AZ — cheaper for non-prod"
+  type        = bool
+  default     = false
+}
+
+variable "one_nat_gateway_per_az" {
+  description = "Create one NAT Gateway per AZ — set to false when using single_nat_gateway"
+  type        = bool
+  default     = true
+}

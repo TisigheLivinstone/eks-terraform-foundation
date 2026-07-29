@@ -13,8 +13,8 @@ module "vpc" {
   # If you use single_nat_gateway = true and that AZ goes down,
   # private subnet instances lose internet access entirely.
   enable_nat_gateway     = true
-  single_nat_gateway     = false
-  one_nat_gateway_per_az = true
+  single_nat_gateway     = var.single_nat_gateway
+  one_nat_gateway_per_az = var.one_nat_gateway_per_az
 
   enable_dns_hostnames = true
   enable_dns_support   = true
