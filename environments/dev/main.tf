@@ -25,15 +25,12 @@ provider "aws" {
   default_tags { tags = local.tags }
 }
 
+# Helm uses your local kubeconfig (~/.kube/config)
+# Run: aws eks update-kubeconfig --name dev-livinstone-infra --region eu-west-1
+# before running terraform apply for the addons
 provider "helm" {
   kubernetes {
-    host                   = module.eks.cluster_endpoint
-    cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
-    exec {
-      api_version = "client.authentication.k8s.io/v1beta1"
-      command     = "aws"
-      args        = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
-    }
+    config_path = "~/.kube/config"
   }
 }
 
@@ -112,6 +109,7 @@ module "addons" {
   source                      = "../../modules/addons"
   cluster_name                = module.eks.cluster_name
   region                      = var.region
+  vpc_id                      = module.networking.vpc_id
   lb_controller_role_arn      = module.lb_controller_irsa.iam_role_arn
   cluster_autoscaler_role_arn = module.cluster_autoscaler_irsa.iam_role_arn
   depends_on                  = [module.node_groups]
