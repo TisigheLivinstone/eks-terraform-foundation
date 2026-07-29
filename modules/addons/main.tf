@@ -30,6 +30,11 @@ resource "helm_release" "aws_load_balancer_controller" {
     name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = var.lb_controller_role_arn
   }
+
+  set {
+    name  = "vpcId"
+    value = var.vpc_id
+  }
 }
 
 # Cluster Autoscaler

@@ -119,12 +119,11 @@ module "cluster_autoscaler_irsa" {
 
 # Part 2 — Add-ons (LB Controller, Cluster Autoscaler, Metrics Server)
 module "addons" {
-  source = "../../modules/addons"
-
-  cluster_name               = module.eks.cluster_name
-  region                     = var.region
-  lb_controller_role_arn     = module.lb_controller_irsa.iam_role_arn
+  source                      = "../../modules/addons"
+  cluster_name                = module.eks.cluster_name
+  region                      = var.region
+  vpc_id                      = module.networking.vpc_id
+  lb_controller_role_arn      = module.lb_controller_irsa.iam_role_arn
   cluster_autoscaler_role_arn = module.cluster_autoscaler_irsa.iam_role_arn
-
-  depends_on = [module.node_groups]
+  depends_on                  = [module.node_groups]
 }
