@@ -59,7 +59,7 @@ terraform apply
 # Use these to update the backend config in each environment's main.tf
 ```
 
-📸 *Screenshot: AWS Console → S3 showing the state bucket with versioning enabled*
+![S3 bucket with versioning](screenshots/vpc.PNG)
 
 ### Step 2 — Deploy Dev
 

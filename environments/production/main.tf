@@ -12,7 +12,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "livinstone-infra-tfstate-506456084401"
+    bucket         = "YOUR_PROJECT_NAME-tfstate-YOUR_ACCOUNT_ID"  # update after running bootstrap
     key            = "production/terraform.tfstate"
     region         = "eu-west-1"
     encrypt        = true

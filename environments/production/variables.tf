@@ -1,6 +1,6 @@
 variable "project_name" {
   type    = string
-  default = "livinstone-infra"
+  # default = "your-project-name"  # set this before applying
 }
 
 variable "environment" {
@@ -15,7 +15,7 @@ variable "region" {
 
 variable "cluster_version" {
   type    = string
-  default = "1.30"
+  default = "1.36"
 }
 
 variable "allowed_cidrs" {
